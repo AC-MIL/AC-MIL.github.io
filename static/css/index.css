@@ -28,9 +28,6 @@ button { font:inherit; }
 .paper-link { cursor:pointer; }
 .paper-link:hover { background:var(--plum); color:#fff; text-decoration:none; }
 .resource-status { color:#dfdae0; }
-.section-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:9px 23px; padding-top:27px; font-size:.9375rem; }
-.section-nav a { color:var(--muted); }
-.section-nav a:hover { color:var(--plum); }
 .section.method-section { padding-top:24px; }
 .architecture-figure { margin-top:36px; }
 .figure-link { display:block; border:1px solid #edf0f3; padding:20px 8px; border-radius:6px; }
@@ -135,7 +132,6 @@ details[open] summary { margin-bottom:23px; }
   .publication-subtitle { font-size:1.3rem; }
   .publication-authors { gap:5px 18px; font-size:1.08rem; }
   .desktop-break { display:none; }
-  .section-nav { gap:8px 17px; font-size:.875rem; }
   .figure-link { padding:10px 3px; }
   figcaption { font-size:.875rem; }
   .metric-strip { gap:8px; }
@@ -156,4 +152,4 @@ details[open] summary { margin-bottom:23px; }
   .citation { padding:18px; }
 }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
-@media print { .section-nav,.publication-links,.skip-link { display:none; } .container { width:100%; } .section { padding:20px 0; } .table-scroll { overflow:visible; } body { font-size:10pt; } .data-table { font-size:9pt; } .disease-grid { grid-template-columns:1fr; } .page-header { padding-top:0; } }
+@media print { .publication-links,.skip-link { display:none; } .container { width:100%; } .section { padding:20px 0; } .table-scroll { overflow:visible; } body { font-size:10pt; } .data-table { font-size:9pt; } .disease-grid { grid-template-columns:1fr; } .page-header { padding-top:0; } }
