@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AC-MIL: Anatomy-Aware Dual-Stream MIL for Kidney Function Prediction</title>
+  <meta name="description" content="AC-MIL learns from glomerular and non-glomerular tissue together to predict kidney function, with disease-specific experiments, transfer to proteinuria and albuminuria, and exploratory pathology analysis.">
+  <meta name="author" content="Abteen Arab, Maziar Riazy, Ali Bashashati">
+  <meta name="theme-color" content="#963967">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AC-MIL — Anatomical context matters">
+  <meta property="og:description" content="Anatomy-aware dual-stream multiple instance learning for kidney function prediction. Disease-specific evidence, transferable representations, and complementary pathology signals.">
+  <meta property="og:url" content="https://ac-mil.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AC-MIL — Anatomical context matters">
+  <meta name="twitter:description" content="Dual-stream multiple instance learning for kidney function prediction from whole-slide images.">
+  <meta name="citation_title" content="Context Matters: Anatomy-Aware Dual-Stream Multiple Instance Learning Framework for eGFR Prediction">
+  <meta name="citation_author" content="Arab, Abteen">
+  <meta name="citation_author" content="Riazy, Maziar">
+  <meta name="citation_author" content="Bashashati, Ali">
+  <meta name="citation_abstract_html_url" content="https://openreview.net/forum?id=KTfPFMntqQ">
+  <link rel="canonical" href="https://ac-mil.github.io/">
+  <link rel="icon" href="static/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/index.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="page-header">
+    <div class="container">
+      <h1 class="publication-title"><span>AC</span>-MIL</h1>
+      <p class="publication-subtitle">Anatomy-Aware Dual-Stream Multiple Instance Learning<br class="desktop-break"> for Kidney Function Prediction</p>
+      <p class="publication-authors"><span>Abteen Arab</span><span>Maziar Riazy<sup>*</sup></span><span>Ali Bashashati<sup>*</sup></span></p>
+      <p class="publication-affiliation">University of British Columbia · Vancouver, Canada</p>
+      <p class="author-note"><sup>*</sup>Co-corresponding authors</p>
+      <div class="publication-links" aria-label="Project resources">
+        <a class="resource-button paper-link" href="https://openreview.net/forum?id=KTfPFMntqQ" target="_blank" rel="noopener" title="Read the paper on OpenReview">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2h8l5 5v15H6z"/><path d="M14 2v6h5M9 12h7M9 16h7"/></svg><span>Paper</span>
+        </a>
+        <button class="resource-button" type="button" disabled aria-disabled="true" title="Code — coming soon">
+          <svg aria-hidden="true" viewBox="0 0 16 16" fill="currentColor"><!-- GitHub mark from Octicons, MIT License. --><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.65 7.65 0 0 1 8 3.86c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Code <span class="resource-status">— Coming soon</span></span>
+        </button>
+      </div>
+      <nav class="section-nav" aria-label="Research sections"><a href="#method">Method</a><a href="#results">Main results</a><a href="#disease">Disease-specific</a><a href="#transfer">Transferability</a><a href="#pathology">Pathology</a></nav>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="overview" aria-label="AC-MIL overview">
+      <div class="container">
+        <p class="hero-message"><strong>Anatomical context matters.</strong> Glomerular and non-glomerular tissue carry different signals about kidney function. AC-MIL learns from both—and learns how to combine them.</p>
+        <figure>
+          <a class="figure-link" href="static/images/architecture.png" target="_blank" rel="noopener" aria-label="Open the AC-MIL architecture at full resolution in a new tab"><img src="static/images/architecture.png" width="2948" height="978" fetchpriority="high" alt="A PAS-stained kidney whole-slide image is split into glomerular and non-glomerular patch bags. A shared frozen encoder embeds both bags, separate pooling produces compartment representations, and bidirectional feature gates combine them for eGFR regression."></a>
+          <figcaption><strong>Two anatomical streams. One context-aware prediction.</strong> A shared frozen CONCHv1.5 encoder embeds both tissue compartments. Each stream pools its own evidence; bidirectional gates use the joint slide context to modulate both representations before predicting estimated glomerular filtration rate (eGFR).</figcaption>
+        </figure>
+        <div class="metric-strip" aria-label="Main AC-MIL results">
+          <div class="metric"><strong>0.6236</strong><span>Pearson correlation</span><small>Best of 21 evaluated configurations</small></div>
+          <div class="metric"><strong>19.07</strong><span>eGFR RMSE</span><small>Lowest error in the main comparison</small></div>
+          <div class="metric"><strong>12.9%</strong><span>Lower RMSE</span><small>Compared with whole-slide ABMIL</small></div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="abstract" aria-labelledby="abstract-title">
+      <div class="container">
+        <h2 class="section-title" id="abstract-title">From tissue morphology to kidney function</h2>
+        <div class="prose">
+          <p>Routine measures of kidney function offer a scalable way to supervise computational pathology models. Yet a kidney biopsy contains multiple anatomical compartments, and their relevance changes with disease. Treating the entire slide as one homogeneous bag can dilute these distinct signals.</p>
+          <p><strong>AC-MIL models glomerular-enriched and non-glomerular tissue as separate MIL streams.</strong> A learned bidirectional gate integrates their representations using the context of both compartments. On 696 PAS-stained whole-slide images from 347 KPMP patients, the ABMIL-based model achieves the strongest performance across all three reported eGFR regression metrics. Disease-specific experiments, transfer to proteinuria and albuminuria, and an exploratory pathology analysis support the value of preserving anatomical context.</p>
+        </div>
+        <ul class="takeaways">
+          <li class="takeaway"><h3>Disease changes what matters</h3><p>The strongest single-stream compartment switches from glomerular tissue in diabetic kidney disease to non-glomerular tissue in acute tubular and interstitial disease.</p></li>
+          <li class="takeaway"><h3>Function-guided features transfer</h3><p>Frozen eGFR-trained representations support related renal endpoints. AC-MIL leads AUROC and accuracy for both proteinuria and albuminuria.</p></li>
+          <li class="takeaway"><h3>Distinct pathology signals</h3><p>Exploratory analysis of high-attention patches reveals different morphologic patterns in the two streams, connecting the architecture to tissue-level evidence.</p></li>
+        </ul>
+      </div>
+    </section>
+    <section class="section research-section" id="method" aria-labelledby="method-title">
+      <div class="container">
+        <p class="eyebrow">The method</p>
+        <h2 class="section-title" id="method-title">Preserve the compartments. Learn their context.</h2>
+        <p class="section-lead">AC-MIL keeps local anatomical identity through pooling, then learns which features from each compartment matter in the context of the other.</p>
+        <ol class="method-steps">
+          <li><h3>Separate the anatomy</h3><p>Extract 512 × 512 patches at 20× magnification. Frozen segmentation models identify glomerular-enriched patches, producing <span class="glom">glomerular</span> and <span class="nonglom">non-glomerular</span> bags.</p></li>
+          <li><h3>Pool each stream</h3><p>A shared, frozen CONCHv1.5 encoder maps patches into features. Each bag is pooled independently; attention-based MIL gives the strongest results in the main study.</p></li>
+          <li><h3>Gate in both directions</h3><p>Both pooled embeddings condition two feature-wise gates. The gated representations are concatenated and passed to a regression head for eGFR prediction.</p></li>
+        </ol>
+        <p class="method-formula"><span class="glom">Glomerular evidence</span> + <span class="nonglom">non-glomerular evidence</span> → joint context → two learned gates → eGFR</p>
+      </div>
+    </section>
+    <section class="section research-section" id="results" aria-labelledby="results-title">
+      <div class="container">
+        <p class="eyebrow">Main results</p>
+        <h2 class="section-title" id="results-title">The way the streams interact makes the difference</h2>
+        <p class="section-lead">Separating tissue alone is not enough. Bidirectional gating delivers the best overall result, surpassing whole-slide pooling, either compartment alone, late fusion, and one-way gating.</p>
+        <div class="table-scroll" role="region" tabindex="0" aria-label="Main ABMIL eGFR regression comparison"><table class="data-table" aria-describedby="main-results-note"><caption>eGFR prediction · ABMIL comparison</caption><thead><tr><th scope="col">Input / integration</th><th scope="col">Pearson r ↑</th><th scope="col">Spearman ρ ↑</th><th scope="col">RMSE ↓</th></tr></thead><tbody><tr class=""><th scope="row">Whole slide<span class="row-tag">single-stream</span></th><td>0.5214 <span class="uncertainty">± 0.0400</span></td><td>0.4850 <span class="uncertainty">± 0.0434</span></td><td>21.90 <span class="uncertainty">± 3.0088</span></td></tr>
+<tr class=""><th scope="row">Glomerular-enriched<span class="row-tag">single-stream</span></th><td>0.4380 <span class="uncertainty">± 0.0729</span></td><td>0.4001 <span class="uncertainty">± 0.0780</span></td><td>23.30 <span class="uncertainty">± 3.5793</span></td></tr>
+<tr class=""><th scope="row">Non-glomerular<span class="row-tag">single-stream</span></th><td>0.5478 <span class="uncertainty">± 0.0579</span></td><td>0.5165 <span class="uncertainty">± 0.0504</span></td><td>21.70 <span class="uncertainty">± 3.1528</span></td></tr>
+<tr class=""><th scope="row">Late fusion<span class="row-tag">dual-stream</span></th><td>0.4938 <span class="uncertainty">± 0.0088</span></td><td>0.4767 <span class="uncertainty">± 0.0115</span></td><td>23.65 <span class="uncertainty">± 2.8058</span></td></tr>
+<tr class=""><th scope="row">Glomerular gate<span class="row-tag">dual-stream</span></th><td>0.4978 <span class="uncertainty">± 0.0280</span></td><td>0.4521 <span class="uncertainty">± 0.0452</span></td><td>22.31 <span class="uncertainty">± 2.6821</span></td></tr>
+<tr class=""><th scope="row">Non-glomerular gate<span class="row-tag">dual-stream</span></th><td>0.4716 <span class="uncertainty">± 0.0421</span></td><td>0.4493 <span class="uncertainty">± 0.0525</span></td><td>22.88 <span class="uncertainty">± 2.6494</span></td></tr>
+<tr class="ours"><th scope="row">AC-MIL<span class="row-tag">Bidirectional gate · dual stream</span></th><td><strong>0.6236</strong> <span class="uncertainty">± 0.0506</span></td><td><strong>0.5497</strong> <span class="uncertainty">± 0.0748</span></td><td><strong>19.07</strong> <span class="uncertainty">± 3.3059</span></td></tr></tbody></table></div>
+        <p class="table-note" id="main-results-note">Three-fold patient-level cross-validation across three seeds. Values reproduce the manuscript’s reported means and ± terms; bold marks the best value in each column. Slides from the same patient remain in the same fold.</p>
+        <p class="result-callout"><strong>12.1% lower RMSE than the strongest single-stream baseline.</strong> Error falls from 21.70 with non-glomerular ABMIL to 19.07 with AC-MIL. Against whole-slide ABMIL, the reduction is 12.9% (21.90 → 19.07), with Pearson r increasing from 0.5214 to 0.6236.</p>
+        <details><summary>Full comparison: all 21 configurations</summary><div class="table-scroll" role="region" tabindex="0" aria-label="Full eGFR regression comparison"><table class="data-table full-results" aria-describedby="main-results-note"><thead><tr><th scope="col">Input / integration</th><th scope="col">Representation</th><th scope="col">Pooling</th><th scope="col">Pearson r ↑</th><th scope="col">Spearman ρ ↑</th><th scope="col">RMSE ↓</th></tr></thead><tbody><tr class=""><th scope="row">Bidirectional gate</th><td class="text">Dual-Stream</td><td class="text">TransMIL</td><td>0.5048 <span class="uncertainty">± 0.0235</span></td><td>0.4684 <span class="uncertainty">± 0.0413</span></td><td>22.53 <span class="uncertainty">± 3.4903</span></td></tr>
+<tr class="ours"><th scope="row">AC-MIL</th><td class="text">Dual-Stream</td><td class="text">ABMIL</td><td><strong>0.6236</strong> <span class="uncertainty">± 0.0506</span></td><td><strong>0.5497</strong> <span class="uncertainty">± 0.0748</span></td><td><strong>19.07</strong> <span class="uncertainty">± 3.3059</span></td></tr>
+<tr class=""><th scope="row">Bidirectional gate</th><td class="text">Dual-Stream</td><td class="text">Mean Pool</td><td>0.5248 <span class="uncertainty">± 0.0477</span></td><td>0.4893 <span class="uncertainty">± 0.0793</span></td><td>22.14 <span class="uncertainty">± 2.8999</span></td></tr>
+<tr class=""><th scope="row">Glomerular gate</th><td class="text">Dual-Stream</td><td class="text">TransMIL</td><td>0.4612 <span class="uncertainty">± 0.0410</span></td><td>0.4165 <span class="uncertainty">± 0.0378</span></td><td>23.24 <span class="uncertainty">± 3.6077</span></td></tr>
+<tr class=""><th scope="row">Glomerular gate</th><td class="text">Dual-Stream</td><td class="text">ABMIL</td><td>0.4978 <span class="uncertainty">± 0.0280</span></td><td>0.4521 <span class="uncertainty">± 0.0452</span></td><td>22.31 <span class="uncertainty">± 2.6821</span></td></tr>
+<tr class=""><th scope="row">Glomerular gate</th><td class="text">Dual-Stream</td><td class="text">Mean Pool</td><td>0.5083 <span class="uncertainty">± 0.1149</span></td><td>0.4839 <span class="uncertainty">± 0.0975</span></td><td>22.30 <span class="uncertainty">± 4.3130</span></td></tr>
+<tr class=""><th scope="row">Non-glomerular gate</th><td class="text">Dual-Stream</td><td class="text">TransMIL</td><td>0.4964 <span class="uncertainty">± 0.0187</span></td><td>0.4815 <span class="uncertainty">± 0.0328</span></td><td>23.28 <span class="uncertainty">± 2.2006</span></td></tr>
+<tr class=""><th scope="row">Non-glomerular gate</th><td class="text">Dual-Stream</td><td class="text">ABMIL</td><td>0.4716 <span class="uncertainty">± 0.0421</span></td><td>0.4493 <span class="uncertainty">± 0.0525</span></td><td>22.88 <span class="uncertainty">± 2.6494</span></td></tr>
+<tr class=""><th scope="row">Non-glomerular gate</th><td class="text">Dual-Stream</td><td class="text">Mean Pool</td><td>0.4624 <span class="uncertainty">± 0.0281</span></td><td>0.4174 <span class="uncertainty">± 0.0430</span></td><td>22.97 <span class="uncertainty">± 2.5062</span></td></tr>
+<tr class=""><th scope="row">Late fusion</th><td class="text">Dual-Stream</td><td class="text">TransMIL</td><td>0.4939 <span class="uncertainty">± 0.0271</span></td><td>0.4498 <span class="uncertainty">± 0.0663</span></td><td>22.99 <span class="uncertainty">± 3.0887</span></td></tr>
+<tr class=""><th scope="row">Late fusion</th><td class="text">Dual-Stream</td><td class="text">ABMIL</td><td>0.4938 <span class="uncertainty">± 0.0088</span></td><td>0.4767 <span class="uncertainty">± 0.0115</span></td><td>23.65 <span class="uncertainty">± 2.8058</span></td></tr>
+<tr class=""><th scope="row">Late fusion</th><td class="text">Dual-Stream</td><td class="text">Mean Pool</td><td>0.4669 <span class="uncertainty">± 0.0682</span></td><td>0.4321 <span class="uncertainty">± 0.0841</span></td><td>22.58 <span class="uncertainty">± 3.3420</span></td></tr>
+<tr class=""><th scope="row">Whole slide</th><td class="text">Single-Stream</td><td class="text">TransMIL</td><td>0.4734 <span class="uncertainty">± 0.0073</span></td><td>0.4311 <span class="uncertainty">± 0.0108</span></td><td>23.81 <span class="uncertainty">± 2.3466</span></td></tr>
+<tr class=""><th scope="row">Whole slide</th><td class="text">Single-Stream</td><td class="text">ABMIL</td><td>0.5214 <span class="uncertainty">± 0.0400</span></td><td>0.4850 <span class="uncertainty">± 0.0434</span></td><td>21.90 <span class="uncertainty">± 3.0088</span></td></tr>
+<tr class=""><th scope="row">Whole slide</th><td class="text">Single-Stream</td><td class="text">Mean Pool</td><td>0.4993 <span class="uncertainty">± 0.0625</span></td><td>0.4671 <span class="uncertainty">± 0.0781</span></td><td>22.47 <span class="uncertainty">± 3.4559</span></td></tr>
+<tr class=""><th scope="row">Glomerular-enriched</th><td class="text">Single-Stream</td><td class="text">TransMIL</td><td>0.4805 <span class="uncertainty">± 0.0585</span></td><td>0.4337 <span class="uncertainty">± 0.0566</span></td><td>22.50 <span class="uncertainty">± 4.1410</span></td></tr>
+<tr class=""><th scope="row">Glomerular-enriched</th><td class="text">Single-Stream</td><td class="text">ABMIL</td><td>0.4380 <span class="uncertainty">± 0.0729</span></td><td>0.4001 <span class="uncertainty">± 0.0780</span></td><td>23.30 <span class="uncertainty">± 3.5793</span></td></tr>
+<tr class=""><th scope="row">Glomerular-enriched</th><td class="text">Single-Stream</td><td class="text">Mean Pool</td><td>0.4874 <span class="uncertainty">± 0.0143</span></td><td>0.4528 <span class="uncertainty">± 0.0395</span></td><td>22.45 <span class="uncertainty">± 2.8337</span></td></tr>
+<tr class=""><th scope="row">Non-glomerular</th><td class="text">Single-Stream</td><td class="text">TransMIL</td><td>0.5031 <span class="uncertainty">± 0.0456</span></td><td>0.4729 <span class="uncertainty">± 0.0518</span></td><td>22.51 <span class="uncertainty">± 3.0477</span></td></tr>
+<tr class=""><th scope="row">Non-glomerular</th><td class="text">Single-Stream</td><td class="text">ABMIL</td><td>0.5478 <span class="uncertainty">± 0.0579</span></td><td>0.5165 <span class="uncertainty">± 0.0504</span></td><td>21.70 <span class="uncertainty">± 3.1528</span></td></tr>
+<tr class=""><th scope="row">Non-glomerular</th><td class="text">Single-Stream</td><td class="text">Mean Pool</td><td>0.4802 <span class="uncertainty">± 0.0946</span></td><td>0.4579 <span class="uncertainty">± 0.0944</span></td><td>22.63 <span class="uncertainty">± 4.1248</span></td></tr></tbody></table></div><p class="table-note">Includes TransMIL, ABMIL, and mean pooling. AC-MIL with ABMIL leads all three metrics across the full comparison.</p></details>
+      </div>
+    </section>
+    <section class="section research-section" id="disease" aria-labelledby="disease-title">
+      <div class="container">
+        <p class="eyebrow">Disease-specific experiments</p>
+        <h2 class="section-title" id="disease-title">Different diseases. Different predictive compartments.</h2>
+        <p class="section-lead">The disease-stratified experiments reveal why anatomy matters: <strong>the most informative single-stream compartment changes with the dominant site of pathology.</strong> AC-MIL achieves the strongest correlation in both disease groups.</p>
+        <div class="disease-grid">
+          <article class="disease-panel" aria-labelledby="dkd-title">
+            <p class="panel-label">Glomerulus-involved</p><h3 id="dkd-title">Diabetic kidney disease</h3>
+            <p class="panel-description">Glomerular-enriched tissue is the strongest single-stream input, leading both correlation and RMSE among the single-stream models.</p>
+            <div class="table-scroll" role="region" tabindex="0" aria-label="Diabetic kidney disease results"><table class="data-table" aria-describedby="disease-note"><thead><tr><th scope="col">Input</th><th scope="col">Pearson r ↑</th><th scope="col">RMSE ↓</th></tr></thead><tbody>
+              <tr><th scope="row">Whole slide</th><td>0.4585</td><td>22.74</td></tr><tr><th scope="row">Glomerular-enriched</th><td>0.5689</td><td><strong>20.84</strong></td></tr><tr><th scope="row">Non-glomerular</th><td>0.3501</td><td>22.99</td></tr><tr class="ours"><th scope="row">AC-MIL</th><td><strong>0.5945</strong></td><td>21.21</td></tr>
+            </tbody></table></div>
+            <p class="disease-insight"><strong>AC-MIL combines the evidence:</strong> Pearson r rises from 0.4585 for the whole-slide baseline to 0.5945.</p>
+          </article>
+          <article class="disease-panel extra" aria-labelledby="extra-title">
+            <p class="panel-label">Extra-glomerular</p><h3 id="extra-title">Tubular &amp; interstitial disease</h3>
+            <p class="panel-description">For acute tubular injury and acute interstitial nephritis, non-glomerular tissue becomes the strongest single-stream input.</p>
+            <div class="table-scroll" role="region" tabindex="0" aria-label="Acute tubular injury and acute interstitial nephritis results"><table class="data-table" aria-describedby="disease-note"><thead><tr><th scope="col">Input</th><th scope="col">Pearson r ↑</th><th scope="col">RMSE ↓</th></tr></thead><tbody>
+              <tr><th scope="row">Whole slide</th><td>0.5250</td><td>20.88</td></tr><tr><th scope="row">Glomerular-enriched</th><td>0.3518</td><td>23.07</td></tr><tr><th scope="row">Non-glomerular</th><td>0.6019</td><td><strong>19.35</strong></td></tr><tr class="ours"><th scope="row">AC-MIL</th><td><strong>0.6366</strong></td><td>19.75</td></tr>
+            </tbody></table></div>
+            <p class="disease-insight"><strong>The pattern reverses, the benefit remains:</strong> AC-MIL reaches r = 0.6366 while preserving competitive error.</p>
+          </article>
+        </div>
+        <p class="table-note" id="disease-note">All comparisons use ABMIL. Bold denotes the highest correlation or lowest RMSE within each group. Compartment-only models achieve the lowest subgroup RMSE; AC-MIL has the highest correlation and second-lowest RMSE in both.</p>
+        <details><summary>Does the advantage persist with matched patch budgets?</summary>
+          <p class="prose">Anatomy-aware inputs improve over whole-slide ABMIL at every tested fixed bag size. With 64 total patches, dual-stream integration gives the largest reduction in error, supporting a benefit beyond differences in natural bag size.</p>
+          <div class="table-scroll" role="region" tabindex="0" aria-label="Fixed-cardinality ablation" style="margin-top:22px"><table class="data-table"><thead><tr><th scope="col">Input</th><th scope="col">K = 16</th><th scope="col">K = 32</th><th scope="col">K = 64</th><th scope="col">Natural bags</th></tr></thead><tbody><tr class="ours"><th scope="row">AC-MIL</th><td>−0.4509</td><td>−0.5772</td><td><strong>−0.5299</strong></td><td><strong>−2.83</strong></td></tr><tr><th scope="row">Glomerular</th><td>−0.7073</td><td>−0.3259</td><td>−0.4075</td><td>+1.40</td></tr><tr><th scope="row">Non-glomerular</th><td><strong>−0.7916</strong></td><td><strong>−0.6594</strong></td><td>−0.5041</td><td>−0.20</td></tr></tbody></table></div>
+          <p class="table-note">Signed ΔRMSE relative to whole-slide ABMIL; more negative is better. Fixed-cardinality experiments use five seeds, with the same total patch budget and an even split across AC-MIL’s two streams. Non-glomerular input leads at K = 16 and K = 32; AC-MIL leads at K = 64.</p>
+        </details>
+      </div>
+    </section>
+    <section class="section research-section" id="transfer" aria-labelledby="transfer-title">
+      <div class="container">
+        <p class="eyebrow">Transferability</p>
+        <h2 class="section-title" id="transfer-title">Learn kidney function. Carry the representation further.</h2>
+        <p class="section-lead">The learned representation carries useful information beyond eGFR. Freeze the pre-regression slide embeddings, train a lightweight MLP for a new endpoint, and the anatomical advantage carries over to <strong>proteinuria and albuminuria classification</strong>.</p>
+        <div class="transfer-overview">
+          <article class="transfer-highlight"><div class="value"><strong>0.8260</strong><span>AUROC</span></div><h3>Proteinuria</h3><p>AC-MIL leads all three reported metrics. Its AUROC improves by <strong style="font:inherit;font-weight:600">0.0795</strong> over whole-slide embeddings.</p></article>
+          <article class="transfer-highlight"><div class="value"><strong>0.7242</strong><span>AUROC</span></div><h3>Albuminuria</h3><p>AC-MIL leads AUROC and accuracy. Its AUROC improves by <strong style="font:inherit;font-weight:600">0.0879</strong> over whole-slide embeddings.</p></article>
+        </div>
+        <div class="table-scroll transfer-table" role="region" tabindex="0" aria-labelledby="protein-title"><table class="data-table" aria-describedby="transfer-note"><caption id="protein-title">Proteinuria <span class="row-tag">Positive at ≥ 150 mg/g creatinine</span></caption><thead><tr><th scope="col">Slide representation</th><th scope="col">Accuracy ↑</th><th scope="col">AUROC ↑</th><th scope="col">F1 ↑</th></tr></thead><tbody><tr class=""><th scope="row">Whole slide</th><td>0.6980 <span class="uncertainty">± 0.0409</span></td><td>0.7465 <span class="uncertainty">± 0.0771</span></td><td>0.7874 <span class="uncertainty">± 0.0345</span></td></tr><tr class=""><th scope="row">Glomerular</th><td>0.6984 <span class="uncertainty">± 0.0489</span></td><td>0.7217 <span class="uncertainty">± 0.0881</span></td><td>0.7822 <span class="uncertainty">± 0.0425</span></td></tr><tr class=""><th scope="row">Non-glomerular</th><td>0.7390 <span class="uncertainty">± 0.0477</span></td><td>0.8087 <span class="uncertainty">± 0.1232</span></td><td>0.8102 <span class="uncertainty">± 0.0354</span></td></tr><tr class="ours"><th scope="row">AC-MIL</th><td><strong>0.7438</strong> <span class="uncertainty">± 0.0093</span></td><td><strong>0.8260</strong> <span class="uncertainty">± 0.1074</span></td><td><strong>0.8160</strong> <span class="uncertainty">± 0.0025</span></td></tr></tbody></table></div>
+        <div class="table-scroll transfer-table" role="region" tabindex="0" aria-labelledby="albumin-title"><table class="data-table" aria-describedby="transfer-note"><caption id="albumin-title">Albuminuria <span class="row-tag">Positive at ≥ 30 mg/g creatinine</span></caption><thead><tr><th scope="col">Slide representation</th><th scope="col">Accuracy ↑</th><th scope="col">AUROC ↑</th><th scope="col">F1 ↑</th></tr></thead><tbody><tr class=""><th scope="row">Whole slide</th><td>0.6650 <span class="uncertainty">± 0.0109</span></td><td>0.6363 <span class="uncertainty">± 0.1562</span></td><td><strong>0.7668</strong> <span class="uncertainty">± 0.0176</span></td></tr><tr class=""><th scope="row">Glomerular</th><td>0.6656 <span class="uncertainty">± 0.0487</span></td><td>0.7124 <span class="uncertainty">± 0.0949</span></td><td>0.7601 <span class="uncertainty">± 0.0169</span></td></tr><tr class=""><th scope="row">Non-glomerular</th><td>0.6499 <span class="uncertainty">± 0.0378</span></td><td>0.6465 <span class="uncertainty">± 0.1846</span></td><td>0.7470 <span class="uncertainty">± 0.0111</span></td></tr><tr class="ours"><th scope="row">AC-MIL</th><td><strong>0.6687</strong> <span class="uncertainty">± 0.0387</span></td><td><strong>0.7242</strong> <span class="uncertainty">± 0.0748</span></td><td>0.7648 <span class="uncertainty">± 0.0345</span></td></tr></tbody></table></div>
+        <p class="table-note" id="transfer-note">All single-stream representations use ABMIL; AC-MIL uses bidirectional gating. The eGFR-trained slide embeddings are frozen, and downstream MLP classifiers are trained for each target. Bold marks the best value per target and metric. This evaluates transfer between tasks; external-cohort generalization is not evaluated here.</p>
+        <p class="result-callout"><strong>The compartment pattern repeats across endpoints.</strong> Non-glomerular embeddings lead the single-stream proteinuria results; glomerular embeddings lead single-stream albuminuria AUROC. AC-MIL achieves the highest AUROC and accuracy for both targets. Whole-slide embeddings retain a small advantage on albuminuria F1 (0.7668 vs 0.7648).</p>
+      </div>
+    </section>
+    <section class="section research-section" id="pathology" aria-labelledby="pathology-title">
+      <div class="container">
+        <p class="eyebrow">Pathology analysis</p>
+        <h2 class="section-title" id="pathology-title">Two streams, distinct morphologic signals</h2>
+        <p class="section-lead">What tissue patterns accompany the model’s predictions? An exploratory analysis examines high-attention patches from each stream, comparing patients with high and low <strong>predicted</strong> eGFR.</p>
+        <div class="pathology-intro">
+          <article><h3>Glomerular tissue reflects a damage pattern</h3><p>Lower predicted eGFR coincides with more VLM-identified inflammation, fibrosis or matrix expansion, injury, and structural distortion. Inflammation rises from <strong>4.2% to 14.0%</strong> across the high- to low-predicted-eGFR groups.</p></article>
+          <article><h3>Non-glomerular tissue carries a different signal</h3><p>Injury or degeneration is more frequent in the high-predicted-eGFR group (<strong>9.9% vs 2.3%</strong>). This contrasting pattern suggests that the streams encode different aspects of tissue morphology.</p></article>
+        </div>
+        <div class="table-scroll" role="region" tabindex="0" aria-label="VLM-derived pathology features by predicted eGFR"><table class="data-table pathology-table" aria-describedby="pathology-note"><caption>VLM-identified morphologic features (%)</caption><thead><tr><th scope="col" rowspan="2">Feature</th><th scope="colgroup" colspan="2">Glomerular patches</th><th scope="colgroup" colspan="2">Non-glomerular patches</th></tr><tr><th scope="col">High eGFR</th><th scope="col">Low eGFR</th><th scope="col">High eGFR</th><th scope="col">Low eGFR</th></tr></thead><tbody><tr><th scope="row">Inflammation</th><td class="">4.2 <span class="uncertainty">± 0.9</span></td><td class="signal">14.0 <span class="uncertainty">± 1.9</span></td><td class="">5.1 <span class="uncertainty">± 3.0</span></td><td class="">3.4 <span class="uncertainty">± 5.2</span></td></tr><tr><th scope="row">Fibrosis or matrix expansion</th><td class="">1.3 <span class="uncertainty">± 2.4</span></td><td class="signal">6.9 <span class="uncertainty">± 0.7</span></td><td class="">3.4 <span class="uncertainty">± 5.9</span></td><td class="">2.8 <span class="uncertainty">± 0.7</span></td></tr><tr><th scope="row">Injury or degenerative change</th><td class="">1.8 <span class="uncertainty">± 3.1</span></td><td class="signal">6.0 <span class="uncertainty">± 1.0</span></td><td class="signal-blue">9.9 <span class="uncertainty">± 1.1</span></td><td class="">2.3 <span class="uncertainty">± 1.6</span></td></tr><tr><th scope="row">Structural distortion</th><td class="">2.5 <span class="uncertainty">± 0.3</span></td><td class="signal">5.6 <span class="uncertainty">± 1.7</span></td><td class="">0.9 <span class="uncertainty">± 2.2</span></td><td class="">0.1 <span class="uncertainty">± 1.0</span></td></tr></tbody></table></div>
+        <p class="table-note" id="pathology-note">High and low refer to model-predicted eGFR. Quilt-LLaVA characterizes high-attention patches, and a separate language model aggregates the outputs. The reported uncertainty uses patch-level bootstrapping. Colored values mark the differences highlighted in the manuscript.</p>
+        <p class="result-callout"><strong>Exploratory evidence for complementary tissue signals.</strong> These VLM-based summaries connect the two-stream design to distinct morphologic patterns. Expert renal pathology review remains necessary to validate the findings.</p>
+      </div>
+    </section>
+    <section class="section research-section" id="study" aria-labelledby="study-title">
+      <div class="container">
+        <p class="eyebrow">Study design</p><h2 class="section-title" id="study-title">Anatomy-aware learning, patient-level evaluation</h2>
+        <dl class="study-grid">
+          <div><dt>696 whole-slide images · 347 patients</dt><dd>PAS-stained kidney tissue from the Kidney Precision Medicine Project (KPMP), with matched eGFR and at least 30 glomerular-enriched patches per included case.</dd></div>
+          <div><dt>Three patient-level folds · three seeds</dt><dd>Each slide is a separate input. All slides from the same patient stay within the same fold to prevent patient overlap between training and testing.</dd></div>
+          <div><dt>One shared frozen encoder</dt><dd>CONCHv1.5 embeds 512 × 512 patches at 20× magnification. Segmentation defines the glomerular-enriched and non-glomerular bags.</dd></div>
+          <div><dt>A shared training protocol</dt><dd>Thirty epochs with AdamW, learning rate 10⁻³, weight decay 10⁻⁴, and a Huber–Pearson objective. The main comparison includes mean pooling, ABMIL, and TransMIL.</dd></div>
+        </dl>
+      </div>
+    </section>
+    <section class="section research-section" id="citation" aria-labelledby="citation-title">
+      <div class="container"><h2 class="section-title" id="citation-title">Citation</h2><p class="section-lead">AC-MIL is presented in <a href="https://openreview.net/forum?id=KTfPFMntqQ" target="_blank" rel="noopener">Context Matters: Anatomy-Aware Dual-Stream Multiple Instance Learning Framework for eGFR Prediction</a>.</p>
+        <pre class="citation" tabindex="0" aria-label="BibTeX citation"><code>@misc{arab2026context,
+  title  = {Context Matters: Anatomy-Aware Dual-Stream Multiple Instance Learning Framework for eGFR Prediction},
+  author = {Arab, Abteen and Riazy, Maziar and Bashashati, Ali},
+  year   = {2026},
+  url    = {https://openreview.net/forum?id=KTfPFMntqQ}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container"><p>AC-MIL · University of British Columbia</p><p>Page design adapted from ReDT and VGGT-Prime, based on the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a> and <a href="https://nerfies.github.io/">Nerfies</a>.</p><p>Website template: <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Research figures retain their original rights.</p></div></footer>
+</body>
+</html>
