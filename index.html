@@ -78,7 +78,7 @@
         <h2 class="section-title" id="study-title">Study design</h2>
         <dl class="study-grid">
           <div><dt>696 whole-slide images · 347 patients</dt><dd>PAS-stained kidney tissue from the Kidney Precision Medicine Project (KPMP), with matched eGFR and at least 30 glomerular-enriched patches per included case.</dd></div>
-          <div><dt>Three patient-level folds · three seeds</dt><dd>Each slide is a separate input. All slides from the same patient stay within the same fold to prevent patient overlap between training and testing.</dd></div>
+          <div><dt>3 patient-level folds x 3 seeds</dt><dd>Each slide is a separate input. All slides from the same patient stay within the same fold to prevent patient overlap between training and testing.</dd></div>
           <div><dt>One shared frozen encoder</dt><dd>CONCHv1.5 embeds 512 × 512 patches at 20× magnification. Segmentation defines the glomerular-enriched and non-glomerular bags.</dd></div>
           <div><dt>A shared training protocol</dt><dd>Thirty epochs with AdamW, learning rate 10⁻³, weight decay 10⁻⁴, and a Huber–Pearson objective. The main comparison includes mean pooling, ABMIL, and TransMIL.</dd></div>
         </dl>
