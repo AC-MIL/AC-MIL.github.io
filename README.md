@@ -16,6 +16,8 @@ A static research project page adapted from the local ReDT and VGGT-Prime sites.
 
 The Paper button opens OpenReview. Code is marked **Coming soon**, with a GitHub icon. The website repository contains the project page, not the research implementation.
 
+The page presents the method first, followed by the architecture diagram and three performance summary boxes. Study design precedes the detailed results, disease-specific evaluation, transfer experiments, and exploratory pathology analysis.
+
 ## Content and evidence
 
 Content is based on the active portion of the supplied `MIDL_2026/midl-shortpaper.tex` manuscript and its `Model.png` figure. Excluded draft material after `\\iffalse` is not used. AC-MIL is the project name supplied by the author; the citation retains the manuscript title.

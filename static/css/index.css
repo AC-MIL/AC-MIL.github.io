@@ -31,16 +31,16 @@ button { font:inherit; }
 .section-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:9px 23px; padding-top:27px; font-size:.9375rem; }
 .section-nav a { color:var(--muted); }
 .section-nav a:hover { color:var(--plum); }
-.overview { padding:20px 0 24px; }
-.hero-message { margin:0 auto 25px; text-align:center; max-width:890px; font-size:1.16rem; line-height:1.75; }
-.hero-message strong { color:var(--ink); font-weight:600; }
+.section.method-section { padding-top:24px; }
+.architecture-figure { margin-top:36px; }
 .figure-link { display:block; border:1px solid #edf0f3; padding:20px 8px; border-radius:6px; }
 .figure-link:hover { border-color:#c9cfd9; }
 figcaption { padding-top:15px; font-size:.9375rem; line-height:1.75; color:var(--muted); }
 figcaption strong { color:var(--ink); }
-.metric-strip { display:grid; grid-template-columns:repeat(3,1fr); margin-top:31px; padding:24px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-.metric { text-align:center; padding:0 16px; }
-.metric + .metric { border-left:1px solid var(--line); }
+.performance-summary { margin-top:34px; }
+.summary-title { margin-bottom:20px; text-align:center; font-size:1.35rem; font-weight:600; }
+.metric-strip { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.metric { text-align:center; padding:26px 18px; border:1px solid var(--line); border-radius:6px; background:var(--soft); }
 .metric strong { display:block; color:var(--plum); font-family:'Google Sans','Noto Sans',sans-serif; font-size:2.45rem; font-weight:600; line-height:1.2; }
 .metric span { display:block; margin-top:6px; color:var(--ink); font-size:1rem; }
 .metric small { display:block; margin-top:4px; font-size:.875rem; color:var(--muted); }
@@ -52,18 +52,11 @@ figcaption strong { color:var(--ink); }
 .prose { max-width:970px; margin-inline:auto; font-size:1.0625rem; line-height:1.85; }
 .prose p + p { margin-top:18px; }
 .prose strong { color:var(--ink); font-weight:600; }
-.takeaways { display:grid; grid-template-columns:repeat(3,1fr); gap:23px; margin:30px 0 0; padding:0; list-style:none; }
-.takeaway { border-top:3px solid var(--plum); padding:20px 5px 0; }
-.takeaway:nth-child(2) { border-color:var(--blue); }
-.takeaway:nth-child(3) { border-color:var(--ink); }
-.takeaway h3 { font-size:1.17rem; margin-bottom:11px; }
-.takeaway p { font-size:1rem; }
 .method-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; counter-reset:steps; margin:28px 0 0; padding:0; list-style:none; }
 .method-steps li { counter-increment:steps; position:relative; padding-left:42px; }
 .method-steps li::before { content:counter(steps,decimal-leading-zero); position:absolute; left:0; top:0; color:var(--plum); font-weight:700; font-size:.9rem; }
 .method-steps h3 { font-size:1.1rem; margin-bottom:10px; }
 .method-steps p { font-size:.9375rem; }
-.method-formula { margin-top:28px; padding:18px 24px; border-radius:5px; background:var(--soft); text-align:center; font-size:1rem; color:var(--ink); }
 .glom { color:var(--plum); }
 .nonglom { color:var(--blue); }
 .table-scroll { width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
@@ -131,7 +124,6 @@ details[open] summary { margin-bottom:23px; }
 @media(max-width:900px) {
   .disease-grid { grid-template-columns:1fr; gap:35px; }
   .panel-description { min-height:0; }
-  .takeaways { gap:18px; }
   .method-steps { grid-template-columns:1fr; gap:22px; }
   .method-steps li { padding-left:40px; }
   .data-table th,.data-table td { padding:12px; }
@@ -144,12 +136,11 @@ details[open] summary { margin-bottom:23px; }
   .publication-authors { gap:5px 18px; font-size:1.08rem; }
   .desktop-break { display:none; }
   .section-nav { gap:8px 17px; font-size:.875rem; }
-  .hero-message { font-size:1.02rem; }
   .figure-link { padding:10px 3px; }
   figcaption { font-size:.875rem; }
-  .metric-strip { margin-top:24px; padding:21px 0; }
-  .metric { padding:0 7px; }
-  .metric strong { font-size:1.75rem; }
+  .metric-strip { gap:8px; }
+  .metric { padding:20px 8px; }
+  .metric strong { font-size:clamp(1.35rem,5.4vw,1.75rem); }
   .metric span { font-size:.875rem; line-height:1.5; }
   .metric small { font-size:.8rem; line-height:1.6; }
   .section { padding:32px 0; }
@@ -157,9 +148,7 @@ details[open] summary { margin-bottom:23px; }
   .section-title { font-size:1.65rem; }
   .section-lead { font-size:1rem; text-align:left; }
   .prose { font-size:1rem; }
-  .takeaways,.transfer-overview,.pathology-intro,.study-grid { grid-template-columns:1fr; }
-  .takeaways { gap:25px; }
-  .takeaway { padding-top:16px; }
+  .transfer-overview,.pathology-intro,.study-grid { grid-template-columns:1fr; }
   .transfer-highlight { padding:23px; }
   .data-table { font-size:.875rem; }
   .uncertainty { font-size:.8rem; }
