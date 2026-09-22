@@ -49,6 +49,7 @@ figcaption strong { color:var(--ink); }
 .prose { max-width:970px; margin-inline:auto; font-size:1.0625rem; line-height:1.85; }
 .prose p + p { margin-top:18px; }
 .prose strong { color:var(--ink); font-weight:600; }
+.abstract-box { max-width:none; padding:28px 32px; border:1px solid var(--line); border-radius:6px; background:var(--soft); }
 .method-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; counter-reset:steps; margin:28px 0 0; padding:0; list-style:none; }
 .method-steps li { counter-increment:steps; position:relative; padding-left:42px; }
 .method-steps li::before { content:counter(steps,decimal-leading-zero); position:absolute; left:0; top:0; color:var(--plum); font-weight:700; font-size:.9rem; }
@@ -140,6 +141,7 @@ details[open] summary { margin-bottom:23px; }
   .section-title { font-size:1.65rem; }
   .section-lead { font-size:1rem; text-align:left; }
   .prose { font-size:1rem; }
+  .abstract-box { padding:20px; }
   .transfer-overview,.pathology-intro { grid-template-columns:1fr; }
   .transfer-highlight { padding:23px; }
   .data-table { font-size:.875rem; }
