@@ -16,7 +16,7 @@ A static research project page adapted from the local ReDT and VGGT-Prime sites.
 
 The Paper button opens OpenReview. Code is marked **Coming soon**, with a GitHub icon. The website repository contains the project page, not the research implementation.
 
-The page presents the method first, followed by the architecture diagram and three performance summary boxes. Study design precedes the detailed results, disease-specific evaluation, transfer experiments, and exploratory pathology analysis.
+The page presents the method first, followed by the architecture diagram and three performance summary boxes, then the detailed results, disease-specific evaluation, transfer experiments, and exploratory pathology analysis.
 
 ## Content and evidence
 

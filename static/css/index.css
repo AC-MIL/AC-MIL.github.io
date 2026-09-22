@@ -110,10 +110,6 @@ details[open] summary { margin-bottom:23px; }
 .pathology-table thead tr:first-child th:nth-child(3) { text-align:center; color:var(--blue); background:var(--blue-light); }
 .pathology-table .signal { font-weight:600; color:var(--plum); }
 .pathology-table td.signal-blue { font-weight:600; color:var(--blue); }
-.study-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px 36px; margin-top:27px; }
-.study-grid div { padding-bottom:15px; border-bottom:1px solid var(--line); }
-.study-grid dt { color:var(--ink); font-weight:600; }
-.study-grid dd { margin:5px 0 0; font-size:.9375rem; }
 .citation { padding:24px; border:1px solid var(--line); background:var(--soft); border-radius:5px; overflow:auto; white-space:pre-wrap; overflow-wrap:anywhere; font-size:.875rem; line-height:1.75; }
 .citation code { font-family:'SFMono-Regular',Consolas,monospace; }
 .site-footer { padding:30px 0 34px; background:#f8f9fb; border-top:1px solid var(--line); text-align:center; color:var(--muted); font-size:.875rem; }
@@ -144,7 +140,7 @@ details[open] summary { margin-bottom:23px; }
   .section-title { font-size:1.65rem; }
   .section-lead { font-size:1rem; text-align:left; }
   .prose { font-size:1rem; }
-  .transfer-overview,.pathology-intro,.study-grid { grid-template-columns:1fr; }
+  .transfer-overview,.pathology-intro { grid-template-columns:1fr; }
   .transfer-highlight { padding:23px; }
   .data-table { font-size:.875rem; }
   .uncertainty { font-size:.8rem; }
