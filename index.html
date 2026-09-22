@@ -47,9 +47,8 @@
     </div>
   </header>
   <main id="main-content">
-    <section class="section method-section" id="method" aria-labelledby="method-title">
+    <section class="section method-section" id="method" aria-label="Method">
       <div class="container">
-        <h2 class="section-title" id="method-title">Method</h2>
         <div class="prose">
           <p>AC-MIL is an anatomy-aware dual-stream multiple instance learning framework for predicting estimated glomerular filtration rate (eGFR) from kidney whole-slide images. It represents each slide as two bags of patches: glomerular-enriched and non-glomerular. This separation preserves compartment-specific information that may be diluted when all tissue is pooled into a single representation.</p>
           <p>A shared frozen CONCHv1.5 encoder embeds both bags. Each stream is pooled independently, and a bidirectional gating module integrates the resulting representations. Both pooled embeddings condition each gate, allowing the model to modulate features from either compartment using the context of the whole slide.</p>
