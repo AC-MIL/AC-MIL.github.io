@@ -50,9 +50,10 @@ figcaption strong { color:var(--ink); }
 .prose p + p { margin-top:18px; }
 .prose strong { color:var(--ink); font-weight:600; }
 .abstract-box { max-width:none; padding:28px 32px; border:1px solid var(--line); border-radius:6px; background:var(--soft); }
-.method-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; counter-reset:steps; margin:28px 0 0; padding:0; list-style:none; }
-.method-steps li { counter-increment:steps; position:relative; padding-left:42px; }
-.method-steps li::before { content:counter(steps,decimal-leading-zero); position:absolute; left:0; top:0; color:var(--plum); font-weight:700; font-size:.9rem; }
+.method-steps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:44px; margin:32px 0 0; padding:0; list-style:none; }
+.method-steps li { position:relative; padding:24px; border:1px solid var(--line); border-radius:6px; background:#fff; }
+.step-number { display:block; margin-bottom:12px; color:var(--plum); font-weight:600; font-size:.875rem; }
+.step-arrow { position:absolute; top:50%; right:-38px; width:32px; height:24px; color:var(--muted); transform:translateY(-50%); }
 .method-steps h3 { font-size:1.1rem; margin-bottom:10px; }
 .method-steps p { font-size:.9375rem; }
 .glom { color:var(--plum); }
@@ -118,8 +119,8 @@ details[open] summary { margin-bottom:23px; }
 @media(max-width:900px) {
   .disease-grid { grid-template-columns:1fr; gap:35px; }
   .panel-description { min-height:0; }
-  .method-steps { grid-template-columns:1fr; gap:22px; }
-  .method-steps li { padding-left:40px; }
+  .method-steps { grid-template-columns:1fr; }
+  .step-arrow { top:auto; right:auto; bottom:-36px; left:50%; transform:translateX(-50%) rotate(90deg); }
   .data-table th,.data-table td { padding:12px; }
 }
 @media(max-width:640px) {

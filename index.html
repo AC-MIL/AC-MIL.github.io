@@ -52,10 +52,24 @@
           <p>AC-MIL is an anatomy-aware dual-stream multiple instance learning framework for predicting estimated glomerular filtration rate (eGFR) from kidney whole-slide images. It represents each slide as two bags of patches: glomerular-enriched and non-glomerular. This separation preserves compartment-specific information that may be diluted when all tissue is pooled into a single representation.</p>
           <p>A shared frozen CONCHv1.5 encoder embeds both bags. Each stream is pooled independently, and a bidirectional gating module integrates the resulting representations. Both pooled embeddings condition each gate, allowing the model to modulate features from either compartment using the context of the whole slide.</p>
         </div>
-        <ol class="method-steps">
-          <li><h3>Anatomical partitioning</h3><p>Frozen segmentation models identify glomerular-enriched patches among 512 × 512 patches extracted at 20× magnification. Patches are assigned to glomerular-enriched or non-glomerular bags.</p></li>
-          <li><h3>Compartment-specific pooling</h3><p>Each bag is aggregated separately using mean pooling, ABMIL, or TransMIL. ABMIL with bidirectional gating has the highest performance in the main comparison.</p></li>
-          <li><h3>Bidirectional gating</h3><p>Two learned feature-wise gates are conditioned on the concatenated compartment embeddings. The gated representations are concatenated and passed to an eGFR regression head.</p></li>
+        <ol class="method-steps" role="list" aria-label="AC-MIL processing steps">
+          <li>
+            <span class="step-number" aria-hidden="true">01</span>
+            <h3>Anatomical partitioning</h3>
+            <p>Extract 512 × 512 patches at 20× magnification. Frozen segmentation models separate them into glomerular-enriched and non-glomerular bags.</p>
+            <svg class="step-arrow" aria-hidden="true" focusable="false" viewBox="0 0 32 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h26m-7-7 7 7-7 7"/></svg>
+          </li>
+          <li>
+            <span class="step-number" aria-hidden="true">02</span>
+            <h3>Compartment-specific pooling</h3>
+            <p>A shared frozen encoder embeds both bags. Mean pooling, ABMIL, or TransMIL produces one pooled representation per compartment.</p>
+            <svg class="step-arrow" aria-hidden="true" focusable="false" viewBox="0 0 32 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h26m-7-7 7 7-7 7"/></svg>
+          </li>
+          <li>
+            <span class="step-number" aria-hidden="true">03</span>
+            <h3>Bidirectional gating</h3>
+            <p>Both pooled representations condition two feature-wise gates. The gated embeddings are concatenated and passed to a regression head to predict eGFR.</p>
+          </li>
         </ol>
         <figure class="architecture-figure">
           <a class="figure-link" href="static/images/architecture.png" target="_blank" rel="noopener" aria-label="Open the AC-MIL architecture at full resolution in a new tab"><img src="static/images/architecture.png" width="2948" height="978" fetchpriority="high" alt="A PAS-stained kidney whole-slide image is split into glomerular and non-glomerular patch bags. A shared frozen encoder embeds both bags, separate pooling produces compartment representations, and bidirectional feature gates combine them for eGFR regression."></a>
