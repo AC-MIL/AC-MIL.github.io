@@ -1,0 +1,8 @@
+{
+  "name": "ac-mil-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-static.mjs"
+  }
+}
